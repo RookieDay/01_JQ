@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        @keyframes blink{
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .wrap {
+            width: 1000px;
+            text-align: center;
+            margin: 100px auto 0;
+        }
+        .wrap h1 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+        }
+        .word {
+            font-weight: 700;
+        }
+        .typed-cursor {
+            opacity: 1;
+            -webkit-animation: blink .7s infinite;
+            -moz-animation: blink .7s infinite;
+            animation: blink .7s infinite;
+            display: none;
+        }
+        .saySection {
+            margin-top: 5px;
+        }
+        .saySection input {
+            font-size: 30px;
+        }
+        .saySection .btnSay {
+            display: inline-block;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="./jquery-1.11.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#btnSay").click(function(){
+                var inValue = $("#inValue").val();
+                var index = 0;
+                var $word = $(".word");
+                var timer = null;
+                // 先清理下定时器
+                clearInterval(timer);
+                $(".typed-cursor").show();
+                // 3. 把获取到的文本内容，把内容分成一个个的字符
+                var valArr = inValue.split("");
+                // ["Y", "o", "u", " ", "w", "a", "n", "t", " ", "t", "o", " ", "s", "a", "y"]
+                // console.log(valArr);
+                // 4. 使用定时器 填充内容
+                timer = setInterval(function(){
+                    if(index >= valArr.length - 1) {
+                        $(".typed-cursor").hide();
+                        clearInterval(timer);
+                    }
+                    $word.text($word.text() + valArr[index]);
+                    index++;
+                },200)
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h1>
+            You want to say ： <span class="word"></span><span class="typed-cursor">|</span> ！
+        </h1>
+        <div class="saySection">
+            <input type="text" id="inValue" class="txtSay" />
+            <input type="button" value="Say" id="btnSay" class="btnSay" />
+        </div>
+    </div>
+</body>
+</html>
