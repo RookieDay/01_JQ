@@ -1,14 +1,9 @@
 // jQuery的入口函数
 // 作用跟 window.onload 是一样的
 // jQuery的入口函数 第一种形式
-$(document).ready(function () {
-
-});
-
+$(document).ready(function () {});
 // 第二种形式, 这是上面这种形式的简写，作用完全一样
-$(function() {
-
-});
+$(function() {});
 
 
 jQuery入口函数与js入口函数的区别（理解）
@@ -37,6 +32,55 @@ jQuery对象和DOM对象的相互转换:
         var btn1 = $btn[0]; // 此时就把jQuery对象$btn转换成了DOM对象btn1 （推荐使用此方式）
         // 第二种方式
         var btn2 = $btn.get(0);// 此时就把jQuery对象$btn转换成了DOM对象btn2
+以下模拟Jq对象的内部处理：
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var divs = document.getElementsByTagName("div");
+            var obj = {
+                0: divs[0],
+                1: divs[1],
+                2: divs[2],
+                length: divs.length
+            };
+            for(var i = 0; i < obj.length; i++) {
+                obj[i].innerHTML = "我是内容";
+            }
+        }
 
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
 
+几个自己经常分不清的选择器：
+    空格 后代选择器  $(“#j_wrap li”).css(“color”, “red”);选择id为j_wrap的元素的所有后代元素li
+    >    子代选择器  $(“#j_wrap > ul > li”).css(“color”, “red”);选择id为j_wrap的元素的所有子元素ul的所有子元素li
+    举例   
+        $(document).ready(function(){
+            // 子代选择器
+            // 符号：>
+            // 作用：选择指定元素下面的直接子元素（亲儿子元素）
+            //$("#ulItem > li").css("background", "pink");
+            //$("#ulItem > li").css("height", "100px");
+
+            // 后代选择器
+            // 符号：空格
+            // 作用：选择指定元素下面的所有 指定的元素（后代）
+            $("#ulItem li").css("background", "pink");
+        });
+
+find(selector)	查找指定元素的所有后代元素（子子孙孙）	$(“#j_wrap”).find(“li”).css(“color”, “red”);选择id为j_wrap的所有后代元素li
+children()	查找指定元素的直接子元素（亲儿子元素）	$(“#j_wrap”).children(“ul”).css(“color”, “red”);选择id为j_wrap的所有子代元素ul
+siblings()	查找所有兄弟元素（不包括自己）	$(“#j_liItem”).siblings().css(“color”, “red”);选择id为j_liItem的所有兄弟元素
+parent()	查找父元素（亲的）	$(“#j_liItem”).parent(“ul”).css(“color”, “red”);选择id为j_liItem的父元素
+eq(index)	查找指定元素的第index个元素，index是索引号，从0开始	$(“li”).eq(2).css(“color”, “red”);选择所有li元素中的第二个
 
