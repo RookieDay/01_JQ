@@ -84,3 +84,197 @@ siblings()	查找所有兄弟元素（不包括自己）	$(“#j_liItem”).sibl
 parent()	查找父元素（亲的）	$(“#j_liItem”).parent(“ul”).css(“color”, “red”);选择id为j_liItem的父元素
 eq(index)	查找指定元素的第index个元素，index是索引号，从0开始	$(“li”).eq(2).css(“color”, “red”);选择所有li元素中的第二个
 
+JQ02:
+toggleClass(className) 为指定元素切换类 className，该元素有类则移除，没有指定类则添加。$(selector).toggleClass(“liItem”);
+显示和隐藏
+    1 show方法
+    作用：让匹配的元素展示出来
+    // 用法一：
+    // 不带参数，作用等同于 css(“display”, ”block”)
+    /* 注意：此时没有动画效果 */
+    $(selector).show();
+
+    // 用法二：
+    // 参数为数值类型，表示：执行动画时长
+    /* 单位为：毫秒（ms），参数2000表示动画执行时长为2000毫秒，即2秒钟 */
+    $(selector).show(2000);
+    
+    // 参数为字符串类型，是jQuery预设的值，共有三个，分别是：slow、normal、fast
+    /* 跟用法一的对应关系为： */
+    /* slow：600ms、normal：400ms、fast：200ms */
+    $(selector).show(“slow”);
+
+    // 用法三：
+    // 参数一可以是数值类型或者字符串类型
+    // 参数二表示：动画执行完后立即执行的回调函数 切记这种设计思想  在执行完动画后的回调函数
+    $(selector).show(2000, function() {});
+
+    注意：
+    jQuery预设的三组动画效果的语法几乎一致：参数可以有两个，第一个是动画的执行时长，第二个是动画执行完成后的回调函数。
+    第一个参数是：可以是指定字符或者毫秒数
+
+    2 hide方法
+    作用：让匹配元素隐藏掉
+    用法参考show方法
+    $(selector).hide(1000); // 1000表示什么？
+    $(selector).hide(“slow”);
+    $(selector).hide(1000, function(){});
+    $(selector).hide();
+
+一、滑入滑出动画
+    1滑入动画效果（联想：生活中的卷帘门）
+    作用：让元素以下拉动画效果展示出来
+    $(selector).slideDown(speed,callback);
+
+    注意：省略参数或者传入不合法的字符串，那么则使用默认值：400毫秒（同样适用于fadeIn/slideDown/slideUp）
+    $(selector).slideDown();
+
+    2 滑出动画效果
+    作用：让元素以上拉动画效果隐藏起来
+    $(selector).slideUp(speed,callback);
+
+    3滑入滑出切换动画效果
+    $(selector).slideToggle(speed,callback);
+    参数等同与隐藏和显示
+
+二、淡入淡出动画
+    1 淡入动画效果
+    作用：让元素以淡淡的进入视线的方式展示出来
+    $(selector).fadeIn(speed, callback);
+    2 淡出动画效果
+    作用：让元素以渐渐消失的方式隐藏起来
+    $(selector).fadeOut(1000);
+    3淡入淡出切换动画效果
+    作用：通过改变不透明度，切换匹配元素的显示或隐藏状态
+    $(selector).fadeToggle('fast',function(){});
+    参数等同与隐藏和显示
+
+    4改变不透明度到某个值
+    与淡入淡出的区别：淡入淡出只能控制元素的不透明度从 完全不透明 到完全透明；而fadeTo可以指定元素不透明度的具体值。并且时间参数是必需的！
+    作用：调节匹配元素的不透明度 
+    // 用法有别于其他动画效果
+    // 第一个参数表示：时长
+    // 第二个参数表示：不透明度值，取值范围：0-1
+    $(selector).fadeTo(1000, .5); //  0全透，1全不透
+    // 第一个参数为0，此时作用相当于：.css(“opacity”, .5);
+    $(selector).fadeTo(0, .5);
+
+
+停止动画
+    //作用：停止当前正在执行的动画
+    $(selector).stop();
+    为什么要停止动画？
+    如果一个以上的动画方法在同一个元素上调用，那么对这个元素来说，后面的动画将被放到效果队列中。这样就形成了动画队列。（联想：排队进站）
+    动画队列里面的后续动画不会执行，直到第一个动画执行完成。
+    注意：如果一个元素的动画还没有执行完，此时调用sotp()方法，那么动画将会停止，回调函数也不会被执行。
+    有规律的体现：
+    jQuery提供的这几个动画效果控制的CSS属性包括：高度、宽度、不透明度。{height:400px; width:300px; opacity:0.4;}
+    这三个CSS属性的共性是：属性值只有一个，并且这个值是数值（去掉单位后）。
+
+自定义动画
+    注意：所有能够执行动画的属性必须只有一个数字类型的值。
+    比如：要改变字体大小，要使用：fontSize（font-size），不要使用：font
+
+    动画支持的属性：
+        http://www.w3school.com.cn/jquery/effect_animate.asp
+
+    作用：执行一组CSS属性的自定义动画
+    // 第一个参数表示：要执行动画的CSS属性（必选）
+    // 第二个参数表示：执行动画时长（可选）
+    // 第三个参数表示：动画执行完后立即执行的回调函数（可选）
+    $(selector).animate({params},speed,callback);
+
+
+jQuery节点操作
+动态创建元素
+    // $()函数的另外一个作用：动态创建元素
+    var $spanNode = $(“<span>我是一个span元素</span>”);
+	
+添加元素
+在元素的最后一个子元素后面追加元素：append()（重点）
+作用：在被选元素内部的最后一个子元素（或内容）后面插入内容（存在或者创建出来的元素都可以）
+如果是页面中存在的元素，那么调用append()后，会把这个元素从原先的位置移除，然后再插入到新的位置。
+	 如果是给多个目标追加一个元素，那么append()方法的内部会复制多份这个元素，然后追加到多个目标里面去。
+常用参数：htmlString 或者 jQuery对象
+
+// 在$(selector)中追加$node
+$(selector).append($node);
+// 在$(selector)中追加div元素，参数为htmlString
+$(selector).append('<div></div>');
+
+
+不常用操作：（用法跟append()方法基本一致）
+    1 appendTo()
+    作用：同append()，区别是：把$(selector)追加到node中去
+    $(selector).appendTo(node);
+
+    2 prepend()
+    作用：在元素的第一个子元素前面追加内容或节点
+    $(selector).prepend(node);
+
+    3 after()
+    作用：在被选元素之后，作为兄弟元素插入内容或节点
+    $(selector).after(node);
+
+    4 before()
+    作用：在被选元素之前，作为兄弟元素插入内容或节点
+    $(selector).before(node);
+
+html创建元素（推荐使用，重点）
+    作用：设置或返回所选元素的html内容（包括 HTML 标记）
+    设置内容的时候，如果是html标记，会动态创建元素，此时作用跟js里面的 innerHTML属性相同
+    // 动态创建元素
+    $(selector).html(‘<span>传智播客</span>’);
+    // 获取html内容
+    $(selector).html();
+    // 传入一个空字符串，表示清空内容
+    $(selector).html(“”);
+
+清空元素
+    // 清空指定元素的所有子元素（光杆司令）
+    // 没有参数
+    $(selector).empty();
+    // “自杀” 把自己（包括所有内部元素）从文档中删除掉
+    $(selector).remove();
+
+复制元素
+    作用：复制匹配的元素
+    // 复制$(selector)所匹配到的元素
+    // 返回值为复制的新元素
+    $(selector).clone();
+
+总结：
+	推荐使用.html(“<span></span>”)方法来创建元素或者html("")清空元素
+
+操作属性、值和内容
+属性操作
+    设置属性：
+    // 第一个参数表示：要设置的属性名称
+    // 第二个参数表示：改属性名称对应的值
+    $(selector).attr(“title”, “传智播客”);
+获取属性：
+    // 参数为：要获取的属性的名称，改操作会返回指定属性对应的值
+    $(selector).attr(“title”);
+
+移除属性：
+    // 参数为：要移除的属性的名称
+    $(selector).removeAttr(“title”); 
+注意：checked、selected、disabled要使用.prop()方法。
+prop方法通常用来控制DOM元素的动态状态，而不是改变的HTML属性。例如：input和button的disabled特性，以及checkbox的checked特性。
+细节参考：http://api.jquery.com/prop/
+
+值和内容
+val()方法：
+    作用：设置或返回表单元素的值，例如：input,select,textarea的值
+    // 获取匹配元素的值，只匹配第一个元素
+    $(selector).val();
+    // 设置所有匹配到的元素的值
+    $(selector).val(“具体值”);
+
+text() 方法:
+    作用：设置或获取匹配元素的文本内容
+    //获取操作不带参数（注意：这时候会把所有匹配到的元素内容拼接为一个字符串，不同于其他获取操作！）
+    $(selector).text();
+    //设置操作带参数，参数表示要设置的文本内容
+    $(selector).text(“我是内容”);
+    

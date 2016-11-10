@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select {
+            width: 200px;
+            background-color: teal;
+            height: 200px;
+            font-size: 20px;
+        }
+
+        .btn-box {
+            width: 30px;
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function() {
+            // 将左边所有的option添加到右边select里面去
+            $("#btn-sel-all").click(function () {
+                var $options = $("#src-city").children("option");
+                $("#tar-city").append($options);
+            });
+
+            // 往左边添加
+            $("#btn-sel-none").click(function () {
+                var $options = $("#tar-city").children("option");
+                $("#src-city").append($options);
+            });
+
+            // 往右单选
+            $("#btn-sel").click(function () {
+                // 获取到选中的那一个元素option
+                // :selected 匹配的是选中的option
+                var $selOption = $("#src-city").children("option:selected");
+                $("#tar-city").append($selOption);
+            });
+
+            // 往左边单选
+            $("#btn-back").click(function(){
+                var $selectOption = $("#tar-city").children("option:selected");
+                $("#src-city").append($selectOption);
+            });
+        });
+    </script>
+</head>
+
+<body>
+<h1>城市选择：</h1>
+<select id="src-city" name="src-city" multiple>
+    <option value="1">北京</option>
+    <option value="2">上海</option>
+    <option value="3">深圳</option>
+    <option value="4">广州</option>
+    <option value="5">西红柿</option>
+</select>
+<div class="btn-box">
+    <button id="btn-sel-all"> &gt;&gt; </button>
+    <button id="btn-sel-none"> &lt;&lt; </button>
+    <button id="btn-sel"> &gt;</button>
+    <button id="btn-back"> &lt; </button>
+</div>
+<select id="tar-city" name="tar-city" multiple>
+</select>
+</body>
+
+</html>
