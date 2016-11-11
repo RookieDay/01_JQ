@@ -7,6 +7,6 @@
         "command": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" //chrome浏览器的路径
     },
     "isShellCommand": true,
-    "args": ["F:/Review/01_JQ/数据移除/index.html"], //表示对当前文件进行操作
+    "args": ["F:/Review/01_JQ/JQ动画.html"], //表示对当前文件进行操作
     "showOutput": "always"
 }

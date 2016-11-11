@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #e9ffb7;
+    }
+    
+    .divItem {
+        width: 400px;
+        height: 400px;
+        background: pink;
+        position: absolute;
+    }
+    
+    .disc {
+        font-size: 12px;
+        color: red;
+    }
+    
+    .active {
+        color: #ff6700;
+    }
+    
+    .passed {
+        color: #c6c6c6;
+    }
+    
+    .current {
+        background: #ff6700;
+    }
+</style>
+<script src="./jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // control color
+        function showColor(id) {
+            if (id !== "") {
+                $("#" + id).addClass("active").prev().removeClass().addClass("passed");
+            } else {
+                $("#msg").children(".active").removeClass().addClass("passed");
+            }
+        }
+
+        function showCurSpan(id) {
+            $("#" + id).addClass("current").siblings().removeClass("current");
+        }
+        var speed = 4000;
+        $("input").click(function() {
+            // false，false
+            //$("div").stop(false);
+
+            // true, false
+            //$("div").stop(true);
+            $("#hide").addClass("active");
+            $("div").hide(speed, function() {
+                    showColor("show");
+                })
+                .show(speed, function() {
+                    showColor("fadeout");
+                })
+                .fadeOut(speed, function() {
+                    showColor("fadein");
+                })
+                .fadeIn(speed, function() {
+                    showColor("slideup");
+                })
+                .slideUp(speed, function() {
+                    showColor("slidedown");
+                })
+                .slideDown(speed, function() {
+                    showColor("fadeto");
+                })
+                .fadeTo(speed, .4, function() {
+                    showColor("animate");
+                    $("div").css("background", "green");
+                })
+                .animate({
+                    left: 400
+                }, speed)
+                .animate({
+                    height: 100
+                }, speed)
+                .animate({
+                    width: 100
+                }, speed)
+                .animate({
+                    height: 400
+                }, speed)
+                .animate({
+                    width: 400
+                }, speed)
+                .animate({
+                    left: 8
+                }, speed, function() {
+                    showColor("");
+                    $("div").css("background", "pink").fadeTo(0, 1);
+                    $("#msg").children().removeClass();
+                });
+        });
+
+        var $divItem = $(".divItem");
+        var enentObj = {
+            "hide": function() {
+                $divItem.hide(speed);
+            },
+            "show": function() {
+                $divItem.show(speed);
+            },
+            "fadeout": function() {
+                $divItem.fadeOut(speed);
+            },
+            "fadein": function() {
+                $divItem.fadeIn(speed);
+            },
+            "slideup": function() {
+                $divItem.slideUp(speed);
+            },
+            "slidedown": function() {
+                $divItem.slideDown(speed);
+            },
+            "fadeto": function() {
+                $divItem.fadeTo(speed, .4, function() {
+                    $("div").css("background", "green");
+                });
+            },
+            "animate": function() {
+                $divItem.animate({
+                        left: 400
+                    }, speed)
+                    .animate({
+                        height: 100
+                    }, speed)
+                    .animate({
+                        width: 100
+                    }, speed)
+                    .animate({
+                        height: 400
+                    }, speed)
+                    .animate({
+                        width: 400
+                    }, speed)
+                    .animate({
+                        left: 8
+                    }, speed, function() {
+                        $("div").css("background", "pink").fadeTo(0, 1);
+                    });
+            }
+        };
+
+        $("span").click(function() {
+            $divItem.stop(true, true);
+            var id = this.id;
+            showCurSpan(id);
+            eventObj[id]();
+        })
+
+    });
+</script>
+
+<body>
+    <input type="button" value="开始动画" />
+    <span class="disc">说明：橙色表示当前正在执行的动画，灰色表示已经执行完的动画，黑色表示还没有执行的动画</span>
+    <p id="msg">
+        当前展示的是：
+        <span id="hide">隐藏动画效果</span>
+        <span id="show">展示动画效果</span>
+        <span id="fadeout">淡出动画效果</span>
+        <span id="fadein">淡入动画效果</span>
+        <span id="slideup">滑出动画效果</span>
+        <span id="slidedown">滑入动画效果</span>
+        <span id="fadeto">改变不透明度动画效果</span>
+        <span id="animate">自定义动画效果</span>
+    </p>
+    <div class="divItem"></div>
+</body>
+
+</html>
