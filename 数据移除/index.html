@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./demo.css">
+</head>
+<script src="../jquery-1.11.1.min.js"></script>
+<script>
+    $(function() {
+        $('.get').click(function() {
+            $(this).parent("td").parent("tr").remove();
+        });
+    });
+</script>
+
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>课程名称</th>
+                    <th>所属学院</th>
+                    <th>已学会</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <!-- <td><input type="checkbox"/></td> -->
+                    <td>JavaScript</td>
+                    <td>Baidu</td>
+                    <td><a href="javascrip:;" class="get">GET</a></td>
+                </tr>
+                <tr>
+                    <!-- <td><input type="checkbox"/></td> -->
+                    <td>css</td>
+                    <td>Baidu</td>
+                    <td><a href="javascrip:;" class="get">GET</a></td>
+                </tr>
+                <tr>
+                    <!-- <td><input type="checkbox"/></td> -->
+                    <td>html</td>
+                    <td>Baidu</td>
+                    <td><a href="javascrip:;" class="get">GET</a></td>
+                </tr>
+                <tr>
+                    <!-- <td><input type="checkbox"/></td> -->
+                    <td>jQuery</td>
+                    <td>Baidu</td>
+                    <td><a href="javascrip:;" class="get">GET</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
