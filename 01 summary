@@ -478,4 +478,21 @@ jQueryUI
         3.	引入jQueryUI的js文件
         4.	使用jQueryUI功能
             
+  // 函数声明
+  function aa() {}
+  // 函数表达式
+  var func = function funcName (num1) {
+    console.log(funcName);
+  };
 
+切记：
+window.onload = function(){
+    var lis = document.getElementByTagName("li");
+    for(var i = 0 ; i < lis.length;i++) {
+        lis[i].onclick = (function(){
+            return function(){
+            alert(num);
+            }
+        })(i);
+    }    
+}

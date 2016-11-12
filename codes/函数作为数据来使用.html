@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>函数作为数据</title>
+    <script>
+        function add(x) {
+            return x + 10;
+        }
+
+        var ret = add(8); // 18
+        var otherAdd = add; // 把add赋值为变量 otherAdd
+        var otherRet = otherAdd(89); // 99
+
+        /*var a = 1;
+        var b = a;
+        console.log(b);*/
+
+
+        var arr = [];
+        arr[0] = function(x) {
+            return x + 10;
+        };
+        arr[1] = 8;
+
+        console.log(arr[0](arr[1])); // 18
+
+        // 此处 小括号的作用是把 函数声明 转换成了 函数表达式
+        /*(function() {
+
+        })();*/
+        ! function() {
+            alert(123123123);
+        }();
+
+        var a = (1, 2, 4);
+        // a(7777); 
+        //得到的是最后一个数
+        console.log(a);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

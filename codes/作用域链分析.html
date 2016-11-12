@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>案例分析</title>
+    <script>
+        var num = 1;
+
+        function staticFunc() {
+            // console.log(a);
+            console.log(num); // ?? 1
+            console.log(abc); // 报错：abc is not defined
+            // document.getElementById();
+            // 0: 函数参数，arguments，局部变量
+            // 1: [window] num、window、alert、document
+        }
+
+        function test() {
+            var num = 2;
+            var abc = 1;
+
+            staticFunc();
+            //0: 调用对象
+            //1: window的调用对象
+        }
+        test();
+
+        /*function foo() {
+            var num = 10;
+            return function() {
+                console.log(num);
+            };
+        }
+
+        var num = 20;
+        // bar引用了 foo 的内部函数
+        var bar = foo();
+        bar(); // 10
+
+        var num = 0;
+        function foo() {
+          var a = 10;
+          function bar() {
+
+            funtion inner() {
+
+              console.log(num);
+            }
+
+            inner();
+              //0: 调用对象： 自己的 参数、局部变量、内部函数、arguments
+              //1: bar的调用对象
+              //2: foo的调用对象
+              //3: window的调用对象
+          }
+
+          bar();
+          // inner(); 这样是访问不到inner函数的，因为inner实在bar的内部声明的
+          //0: 调用对象 : 自己的 参数、局部变量、内部函数、arguments
+          //1: foo的调用对象
+          //2: window的调用对象
+        }
+
+        foo();
+        //0: 调用对象 : bar
+        //1: window的调用对象*/
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
