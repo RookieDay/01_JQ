@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./jquery-1.11.1.min.js"></script>
+    <script>
+        $(function() {
+            $("#btn").click(function() {
+                var $p = $("p");
+                // 虽然可以实现同样的效果，但是不推荐使用这种方式
+                $("div").html($p);
+
+                // $("div").html("<span></span>"); 推荐！！
+            });
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+<input type="button" value="Set" id="btn" />
+<p>页面元素</p>
+<div>
+
+</div>
+
+</html>
