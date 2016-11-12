@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>函数复习测试题</title>
+    <script>
+        // 1. 无参数无返回值
+        function say() {
+            console.log("猫对狗说：");
+            console.log("hello dog");
+        }
+        //函数调用
+        say();
+
+
+        // 2. 有参数无返回值
+        function sayHello(name) {
+            console.log("hello " + name);
+        }
+        sayHello("张三");
+
+        // Math.random() 函数返回 [0-1) 的随机数（大于等于0，小于1）。
+        var rand = Math.random() * 100;
+        console.log(rand.toFixed(2)); // toFixed(0) 保存0位小数
+
+
+        // 3. 无参数有返回值
+        function random() {
+            var rand = Math.random() * 100;
+            return rand.toFixed(0);
+        }
+        console.log(random());
+
+
+        // 4. 有参数有返回值
+        function compute(a, b) {
+            return a + b;
+        }
+        var sum = compute(5, 6);
+        console.log(sum);
+
+        // 函数返回值：
+        // 如果函数体中出现return则后面的代码不执行
+        function test() {
+            var sum = 5 + 6;
+            return;
+            // 这句话不会执行
+            console.log(sum);
+        }
+        test(); // 函数的返回值为：undefined
+
+        // 当不写返回值，或者return后面没有跟内容的时候返回的也有返回值undefined，这是和其它语言不同的地方
+        function test() {
+            var a = 10;
+        }
+        var result = test();
+        console.log(result);
+
+
+        $("div").click(function() {
+
+        });
+
+        // 把函数作为构造函数来使用
+        function Person() {
+
+        }
+
+        // Person();
+        var p = new Person();
+
+        (function() {
+            var i = 0;
+        })();
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
