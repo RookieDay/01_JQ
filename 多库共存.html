@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./jquery-1.11.1.js"></script>
+    <script>
+        /*var $ = 123;
+
+                        console.log($);
+                        // noConflict 释放对$符号的控制权
+                        $.noConflict();
+                        jQuery(function () {
+                            jQuery("li").css("color", "red");
+                        });*/
+        // 如果 $和jQuery这两个都被占用了，那么还可以用 noConflict
+        var J = $.noConflict();
+        console.log(J);
+        var $ = 123;
+        var jQuery = 456;
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

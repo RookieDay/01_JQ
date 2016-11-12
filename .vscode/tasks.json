@@ -7,6 +7,6 @@
         "command": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" //chrome浏览器的路径
     },
     "isShellCommand": true,
-    "args": ["F:/Review/01_JQ/html方法推荐.html"], //表示对当前文件进行操作
+    "args": ["F:/Review/01_JQ/新闻模块案例.html"], //表示对当前文件进行操作
     "showOutput": "always"
 }

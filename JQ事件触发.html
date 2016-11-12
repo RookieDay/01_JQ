@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            height: 200px;
+            background: #000;
+        }
+    </style>
+    <script src="./jquery-1.11.1.js"></script>
+    <script>
+        $(function() {
+            /*$("div").on("click", function () {
+                $(this).css("height", "500px");
+            });
+
+             /!*$("#btn").on("click", function () {
+                // 简单事件触发
+                $("div").click();
+            });*!/
+
+            $("#btn").on("click", function () {
+                // 简单事件触发
+                $("div").trigger("click");
+            });*/
+
+            $("#trigger").on("click", function() {
+                // trigger 触发事件的时候 会触发浏览器的默认行为
+                // （例如：a标签跳转，文本框获得焦点）
+                // $("#txt").trigger("focus");
+
+                // triggerHandler 触发事件的时候，不会触发浏览器的默认行为，只执行其事件处理函数
+                $("#txt").triggerHandler("focus");
+            });
+
+            $("#txt").on("focus", function() {
+                $("span").text("文本框获得焦点了");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="button" value="触发div的事件" id="btn" />
+    <input type="button" value="触发文本的事件" id="trigger" />
+    <input type="text" id="txt" />
+    <span></span>
+    <div>
+        <input type="button" value="按钮" />
+        <!--<a href="###">不让超链接跳转</a>-->
+    </div>
+</body>
+
+</html>

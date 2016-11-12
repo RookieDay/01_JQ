@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btn").on("click", function() {
+                // 设置操作
+                // 设置操作，默认返回的是jQuery对象
+                // $(this).css("font-size", "30px").text("动态设置的").height(50);
+                console.log($(this).css("font-size", "30px"));
+                // $(this).css("font-size");
+            });
+        });
+
+        // 链式编程原理
+        // 构造函数（类）
+        function Person(age, name) {
+            this.name = name;
+            this.age = age;
+            // 如果一个函数没有返回值，那么默认返回：undefined
+            // 如果一个函数有return语句，但是 return后面什么都不跟，那么，函数的返回值还是：undefined
+            this.sayHello = function() {
+                /*alert("我的名字是：" + this.name);
+                return;*/
+                alert("我的名字是：" + this.name);
+                return this;
+            };
+
+            this.sayAge = function() {
+                alert("年龄是：" + this.age);
+                return this;
+            }
+        }
+
+        var p = new Person(18, "小明");
+        /*var sy = p.sayHello();
+        console.log(sy); // undefined*/
+        p.sayHello().sayAge();
+
+        // var obj = new Object();
+        /*aa();
+
+        function aa() {
+            var a;
+            console.log(a);
+            a = 1;
+            // var a = 1;
+        }*/
+
+        $("ul").children("li").children("span").end().end().css("color", "red");
+    </script>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+
+    <ul>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        <li>这是li</li>
+        </ul>
+    </body>
+
+    </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function() {
+            /*// 实现插件
+            // 给$函数的原型添加了一个方法 $.fn == $.prototype
+            $.fn.changeColor = function (color) {
+                // this
+                // 此处的this是一个jQuery对象
+                this.css("background", color);
+
+                return this;
+            };
+
+            $("input").on("click", function () {
+                // 给jQuery对象扩展方法
+                $("div").changeColor($("div").text()).css("color", "white");
+            });*/
+
+            // $.trim()
+            // 给全局的$ 扩展方法
+            $.log = function(msg) {
+                console.log(msg);
+            }
+
+            $.log("你是谁？");
+
+
+            /*function ab() {}
+            ab.c = function () {
+                alert("how old are you");
+            }
+            ab.c();*/
+        });
+
+
+        /*function Person() {
+
+        }
+
+        Person.prototype.getName = function () {
+
+        }
+
+        // 实例对象
+        var p = new Person();
+        p.getName();*/
+    </script>
+</head>
+
+<body>
+    <input type="button" value="改变背景色" />
+    <div>yellow</div>
+</body>
+
+</html>

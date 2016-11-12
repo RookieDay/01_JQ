@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>五角星评分案例</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            font-size: 40px;
+            color: teal;
+        }
+
+        .comment li {
+            float: left;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function() {
+            var wjx_none = '☆', // 空心五角星
+                    wjx_sel = '★'; // 实心五角星
+
+            // 给所有的li元素绑定鼠标移上来的事件
+            $(".comment").on("mouseenter", "li", function () {
+                // 让当前这个元素变为实心五角星，并且让这个元素之前的所有元素也变为 实心五角星
+                // 让后面的变为 空心五角星
+                // prevAll 作用：获取这个元素之前所有的元素
+                $(this).text(wjx_sel).prevAll("li").text(wjx_sel)
+                        .end()
+                        .nextAll("li").text(wjx_none);
+            });
+
+            // 给所有的li元素绑定单击事件
+            $(".comment").on("click", "li", function () {
+                // 先清楚所有li元素的类
+                $(".comment > li").removeClass("clicked");
+                // addClass()
+                $(this).addClass("clicked");
+            });
+
+            // 给ul绑定鼠标离开的事件
+            $(".comment").on("mouseleave", function () {
+                // 给所有的li元素设置空心五角星
+                $(this).children("li").text(wjx_none);
+
+                // 找到具有类：clicked的元素
+                $(".clicked").text(wjx_sel).prevAll("li").text(wjx_sel);
+            });
+        });
+    </script>
+</head>
+
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+</body>
+
+</html>
